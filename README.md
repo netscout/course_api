@@ -11,7 +11,7 @@
 * [Docker Desktop](https://www.docker.com/products/docker-desktop) (2.3.0.4)
 
 ### Setup
-다음과 같이 설정을 진행하세요:
+다음과 같이 설정을 진행하세요(Windows 기준):
 
   1. 리포지토리 복제
   2. Python 가상환경 패키지 설치:
@@ -32,7 +32,7 @@
      ```
      code .
      ```
-  6. `\course_api\my_settings.py` 파일을 새로 추가하고 데이터 베이스 정보를 설정(기본 설정):
+  6. `\course_api\settings.py` 파일과 같은 위치에 `\course_api\my_settings.py` 파일을 새로 추가하고 데이터 베이스 정보를 설정(기본 설정):
      ```
      DATABASES = {
         'default' : {
