@@ -14,15 +14,25 @@
 다음과 같이 설정을 진행하세요:
 
   1. 리포지토리 복제
-  2. 리포지토리의 루트 폴더에서 필요한 Python 패키지 설치:
+  2. Python 가상환경 패키지 설치:
      ```
+     pip install virtualenv
+     ```
+  3. Python 가상환경 생성 및 활성화:
+     ```
+     python -m venv venv
+     venv\Scripts\activate
+     ```
+  4. 리포지토리의 루트 폴더에서 필요한 Python 패키지 설치:
+     ```
+     cd course_api
      pip install -r requirements.txt
      ```
-  3. 다음으로, vs code를 실행:
+  5. 다음으로, vs code를 실행:
      ```
      code .
      ```
-  4. `\course_api\my_settings.py` 파일을 새로 추가하고 데이터 베이스 정보를 설정(기본 설정):
+  6. `\course_api\my_settings.py` 파일을 새로 추가하고 데이터 베이스 정보를 설정(기본 설정):
      ```
      DATABASES = {
         'default' : {
@@ -35,19 +45,19 @@
         }
      }
      ```
-  5. 다음으로, 데이터 베이스를 설정:
+  7. 다음으로, 데이터 베이스를 설정(환경에 따라 20-30초 소요):
      ```
      docker-compose up -d
      ```
-  6. 다음으로, 데이터베이스에 모델을 마이그레이션 수행:
+  8. 다음으로, 데이터베이스에 모델을 마이그레이션 수행:
      ```
      python manage.py migrate
      ```
-  7. 다음으로, 개발 서버를 실행:
+  9. 다음으로, 개발 서버를 실행:
      ```
      python manage.py runserver
      ```
-  8. 브라우저에서 [http://127.0.0.1:8000/api/Route/](http://127.0.0.1:8000/api/Route/) 에 접속하여 동작을 확인
+  10. 브라우저에서 [http://127.0.0.1:8000/api/Route/](http://127.0.0.1:8000/api/Route/) 에 접속하여 동작을 확인
 
 ### 테스트 코드 실행
 이 프로젝트는 TDD방식으로 진행되었습니다. 테스트 코드를 실행하려면 다음 절차를 진행하세요:
@@ -76,7 +86,7 @@ Django Rest Framework의 특성상 TDD방식으로 진행하기 위해 모델 �
 	  `createdDate` datetime(6) NOT NULL,
 	  `modifiedDate` datetime(6) NOT NULL,
 	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 	
 	-- 정류장(Stops)테이블
 	CREATE TABLE IF NOT EXISTS `Stops` (
@@ -85,7 +95,7 @@ Django Rest Framework의 특성상 TDD방식으로 진행하기 위해 모델 �
 	  `createdDate` datetime(6) NOT NULL,
 	  `modifiedDate` datetime(6) NOT NULL,
 	  PRIMARY KEY (`id`)
-	) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 	-- 노선에 포함된 정류장(Courses) 테이블
 	CREATE TABLE IF NOT EXISTS `Courses` (
@@ -98,7 +108,7 @@ Django Rest Framework의 특성상 TDD방식으로 진행하기 위해 모델 �
 	  KEY `Courses_stopId_a71d860c_fk_Stops_id` (`stopId`),
 	  CONSTRAINT `Courses_routeId_c7995f84_fk_Routes_id` FOREIGN KEY (`routeId`) REFERENCES `Routes` (`id`),
 	  CONSTRAINT `Courses_stopId_a71d860c_fk_Stops_id` FOREIGN KEY (`stopId`) REFERENCES `Stops` (`id`)
-	) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+	) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
      
 
 ### API 활용 방법
